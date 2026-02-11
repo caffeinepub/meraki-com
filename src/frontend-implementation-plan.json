@@ -1,0 +1,25 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Replace Meraki logo asset across site surfaces",
+  "requirements": [
+    {
+      "id": "REQ-23",
+      "summary": "Swap the existing Meraki logo with the provided logo.png while keeping all existing references (header, footer, and Open Graph image) pointing to the generated static asset path.",
+      "acceptanceCriteria": [
+        "`frontend/public/assets/generated/meraki-logo.dim_1024x1024.png` is replaced/updated to match the uploaded `logo.png` (optimized as needed for web use).",
+        "The header logo in `frontend/src/features/landing/HeaderNav.tsx` visually shows the new logo.",
+        "The footer logo in `frontend/src/features/landing/Footer.tsx` visually shows the new logo.",
+        "The Open Graph image meta tag in `frontend/index.html` continues to point to `/assets/generated/meraki-logo.dim_1024x1024.png` and renders the new logo when the page is shared.",
+        "No backend changes are required for this update."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/meraki-logo.dim_1024x1024.png",
+          "operation": "modify",
+          "description": "Replace the existing generated logo file with an optimized PNG derived from the uploaded `logo.png`, preserving the exact filename `meraki-logo.dim_1024x1024.png` so all existing references in the header (`frontend/src/features/landing/HeaderNav.tsx`), footer (`frontend/src/features/landing/Footer.tsx`), and Open Graph metadata (`frontend/index.html`) continue to work without code changes."
+        }
+      ]
+    }
+  ]
+}

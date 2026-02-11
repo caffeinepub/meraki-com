@@ -1,0 +1,37 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-11T03:42:06.656Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 1,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-23",
+        "summary": "Replace the site’s current Meraki logo with the user-uploaded file `logo.png` and ensure the new logo is used everywhere the current logo image is referenced (header, footer, and Open Graph metadata image).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/meraki-logo.dim_1024x1024.png"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/meraki-logo.dim_1024x1024.png"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/meraki-logo.dim_1024x1024.png",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

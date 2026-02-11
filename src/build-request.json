@@ -1,0 +1,51 @@
+{
+  "kind": "build_request",
+  "title": "Replace site logo with user-provided logo asset",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-23",
+      "text": "Replace the site’s current Meraki logo with the user-uploaded file `logo.png` and ensure the new logo is used everywhere the current logo image is referenced (header, footer, and Open Graph metadata image).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "use this logo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "`frontend/public/assets/generated/meraki-logo.dim_1024x1024.png` is replaced/updated to match the uploaded `logo.png` (optimized as needed for web use).",
+        "The header logo in `frontend/src/features/landing/HeaderNav.tsx` visually shows the new logo.",
+        "The footer logo in `frontend/src/features/landing/Footer.tsx` visually shows the new logo.",
+        "The Open Graph image meta tag in `frontend/index.html` continues to point to `/assets/generated/meraki-logo.dim_1024x1024.png` and renders the new logo when the page is shared.",
+        "No backend changes are required for this update."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/components/ui (read-only shadcn components).",
+    "Serve the logo as a static asset from the frontend (do not serve images from the backend)."
+  ],
+  "nonGoals": [
+    "Changing brand colors, typography, layout, or copy beyond what is required to swap the logo asset.",
+    "Adding new pages or new admin functionality for uploading/changing logos."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": [
+      "Convert/optimize the uploaded logo (logo.png > meraki-logo.dim_1024x1024.png)"
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

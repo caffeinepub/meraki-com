@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 15,
+  "summary": "Build a stunning, minimal, modern website for Meraki.com showcasing Rishab Mehta’s premium spiritual services (numerology, vaastu, aura scanning, Reiki) with deep purple and gold branding and emphasis on 20+ years of experience.",
+  "architectural_notes": [
+    "Brand styling: Deep Purple + Gold to convey premium spiritual authority.",
+    "Content focus: Highlight Rishab Mehta and 20+ years experience; present services clearly (numerology, vaastu, aura scanning, Reiki).",
+    "Centralize editable business/contact details (email/phone/etc.) in one place (e.g., config/constants or CMS-like content model) to allow easy updates."
+  ],
+  "known_issues": [
+    "Form submissions are not emailed; inquiry details are stored in backend/admin (owner-only) and require logging into the Inquiries page to view."
+  ],
+  "isFixRequest": false,
+  "imageRequirements": "## Edit Images\n- Convert/optimize the uploaded logo (logo.png > meraki-logo.dim_1024x1024.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-modern-minimal-premium-looking-single-page-marketing-website-for-meraki-featuring-rishab-mehta-using-the-brand-colors-deep-purple-gold-consistently-across-the-ui-backgrounds-accents-buttons-headings-and-ensuring-the-overall-look-conveys-premium-spiritual-authority",
+      "title": "Create a modern, minimal, premium-looking single-page marketing website for “Meraki” featuring Rishab Mehta, using the brand colors Deep Purple + Gold consistently across the UI (backgrounds, accents, buttons, headings) and ensuring the overall look conveys “Premium Spiritual Authority.”",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-core-landing-page-sections-with-clear-english-copy-tailored-to-meraki-header-nav-hero-value-proposition-20-years-experience-highlight-primary-cta-services-overview-numerology-vaastu-aura-scanning-reiki-about-rishab-mehta-credibility-focused-how-it-works-simple-steps-testimonials-static-sample-placeholders-faq-contact-booking-section-and-footer-with-quick-links-and-social-placeholders",
+      "title": "Implement core landing page sections with clear English copy tailored to Meraki: Header/nav, Hero (value proposition + 20+ years experience highlight + primary CTA), Services overview (Numerology, Vaastu, Aura Scanning, Reiki), About Rishab Mehta (credibility-focused), How it works (simple steps), Testimonials (static sample placeholders), FAQ, Contact/Booking section, and Footer with quick links and social placeholders.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-dedicated-service-detail-views-either-separate-routes-or-in-page-deep-link-sections-for-numerology-vaastu-aura-scanning-and-reiki-each-with-a-brief-description-what-a-client-can-expect-and-a-service-specific-cta-that-routes-to-the-contact-booking-form-with-the-service-preselected",
+      "title": "Add dedicated service detail views (either separate routes or in-page deep-link sections) for Numerology, Vaastu, Aura Scanning, and Reiki, each with a brief description, what a client can expect, and a service-specific CTA that routes to the contact/booking form with the service preselected.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-contact-booking-form-that-captures-lead-inquiries-full-name-email-phone-optional-selected-service-preferred-contact-method-message-and-consent-checkbox-validate-required-fields-on-the-client-and-show-a-clear-success-failure-state",
+      "title": "Implement a contact/booking form that captures lead inquiries: full name, email, phone (optional), selected service, preferred contact method, message, and consent checkbox. Validate required fields on the client and show a clear success/failure state.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-owner-only-inquiries-admin-page-in-the-frontend-that-uses-internet-identity-login-and-displays-a-table-list-of-submitted-inquiries-with-basic-filtering-by-service-and-the-ability-to-view-full-message-content",
+      "title": "Add a simple owner-only “Inquiries” admin page in the frontend that uses Internet Identity login and displays a table/list of submitted inquiries with basic filtering (by service) and the ability to view full message content.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-seo-and-trust-essentials-meaningful-page-title-metadata-open-graph-basics-visible-business-identity-meraki-rishab-mehta-and-a-brief-disclaimer-section-clarifying-services-are-for-wellbeing-spiritual-guidance-and-not-a-substitute-for-professional-medical-legal-financial-advice",
+      "title": "Add basic SEO and trust essentials: meaningful page title/metadata, Open Graph basics, visible business identity (“Meraki” + “Rishab Mehta”), and a brief disclaimer section clarifying services are for wellbeing/spiritual guidance and not a substitute for professional medical/legal/financial advice.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-accessibility-and-performance-basics-keyboard-navigable-menu-sufficient-contrast-for-deep-purple-gold-theme-semantic-headings-focus-states-and-optimized-images-served-as-static-assets",
+      "title": "Ensure accessibility and performance basics: keyboard-navigable menu, sufficient contrast for deep purple/gold theme, semantic headings, focus states, and optimized images (served as static assets).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-a-coherent-visual-theme-system-spacing-typography-scale-button-styles-card-styles-section-layouts-aligned-to-a-minimal-modern-premium-spiritual-aesthetic-consistently-applied-across-all-sections",
+      "title": "Generate and include a coherent visual theme system (spacing, typography scale, button styles, card styles, section layouts) aligned to a minimal modern “premium spiritual” aesthetic, consistently applied across all sections.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-image-assets-to-the-project-and-render-them-in-the-ui-logo-subtle-backgrounds-and-service-icons-from-frontend-public-assets-generated-do-not-serve-these-images-from-the-backend",
+      "title": "Add generated static image assets to the project and render them in the UI (logo, subtle backgrounds, and service icons) from frontend/public/assets/generated; do not serve these images from the backend.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-owner-only-site-settings-page-in-the-frontend-that-allows-an-authenticated-admin-to-view-and-update-site-contact-details-email-phone-and-any-other-stored-settings-without-editing-code",
+      "title": "Create a new owner-only “Site Settings” page in the frontend that allows an authenticated admin to view and update site contact details (email, phone, and any other stored settings) without editing code.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-hard-coded-contact-details-on-the-public-landing-page-with-values-from-site-settings-so-updating-settings-updates-the-displayed-email-phone-everywhere-they-appear",
+      "title": "Replace hard-coded contact details on the public landing page with values from Site Settings so updating settings updates the displayed email/phone everywhere they appear.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-navigation-to-the-new-site-settings-page-for-owners-admins-from-the-existing-admin-area",
+      "title": "Add navigation to the new Site Settings page for owners/admins from the existing admin area.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-landing-page-hero-headline-on-the-starting-page-so-the-text-rishab-mehta-is-rendered-on-a-single-line-directly-below-the-harmony-with-portion-of-the-headline-i-e-force-a-line-break-between-harmony-with-and-rishab-mehta-while-preserving-the-existing-styling-accent-color-for-rishab-mehta-responsive-font-sizes-and-overall-hero-spacing",
+      "title": "Update the landing page hero headline on the starting page so the text “Rishab Mehta” is rendered on a single line directly below the “Harmony with” portion of the headline (i.e., force a line break between “Harmony with” and “Rishab Mehta”), while preserving the existing styling (accent color for “Rishab Mehta”, responsive font sizes, and overall hero spacing).",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-main-landing-page-header-navigation-styling-so-that-the-header-nav-links-services-about-how-it-works-faq-and-contact-render-in-white-and-the-meraki-brand-text-in-the-header-renders-in-the-gold-brand-color",
+      "title": "Update the main landing page header navigation styling so that the header nav links “Services”, “About”, “How It Works”, “FAQ”, and “Contact” render in white, and the “Meraki” brand text in the header renders in the gold brand color.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-main-landing-page-header-navigation-link-styling-so-that-the-links-services-about-how-it-works-faq-and-contact-render-in-white-when-the-header-is-in-the-initial-not-scrolled-transparent-state-and-automatically-switch-to-deep-purple-when-the-page-is-scrolled-and-the-sticky-header-background-becomes-white-the-existing-isscrolled-state-in-frontend-src-features-landing-headernav-tsx-apply-the-same-behavior-to-both-desktop-and-mobile-navigation-link-buttons-and-ensure-hover-states-remain-readable-in-both-modes",
+      "title": "Update the main landing page header navigation link styling so that the links “Services”, “About”, “How It Works”, “FAQ”, and “Contact” render in white when the header is in the initial (not scrolled) transparent state, and automatically switch to deep purple when the page is scrolled and the sticky header background becomes white (the existing `isScrolled` state in `frontend/src/features/landing/HeaderNav.tsx`). Apply the same behavior to both desktop and mobile navigation link buttons, and ensure hover states remain readable in both modes.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-social-links-so-that-facebook-instagram-and-linkedin-open-the-user-provided-urls-and-remove-the-twitter-x-icon-link-entirely",
+      "title": "Update the footer social links so that Facebook, Instagram, and LinkedIn open the user-provided URLs, and remove the Twitter/X icon/link entirely.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-public-site-contact-details-displayed-in-the-contact-booking-section-to-use-the-new-values-email-meetrishabmehta-gmail-com-and-phone-9990093666-including-any-ui-fallbacks-shown-when-site-settings-have-not-been-configured-yet",
+      "title": "Update the public site contact details displayed in the Contact/Booking section to use the new values: email meetrishabmehta@gmail.com and phone 9990093666 (including any UI fallbacks shown when Site Settings have not been configured yet).",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-phone-field-in-the-book-your-consultation-form-mandatory-and-enforce-client-side-validation-before-submitting-an-inquiry",
+      "title": "Make the Phone field in the “Book Your Consultation” form mandatory and enforce client-side validation before submitting an inquiry.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-clear-user-facing-copy-in-the-contact-booking-submission-success-state-explaining-what-happens-to-the-submitted-details-in-the-current-system-the-inquiry-is-saved-to-the-website-s-backend-and-can-be-viewed-by-the-site-owner-after-signing-in-to-the-owner-only-inquiries-dashboard-no-email-is-sent",
+      "title": "Add clear user-facing copy in the Contact/Booking submission success state explaining what happens to the submitted details in the current system: the inquiry is saved to the website’s backend and can be viewed by the site owner after signing in to the owner-only Inquiries dashboard (no email is sent).",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-site-s-current-meraki-logo-with-the-user-uploaded-file-logo-png-and-ensure-the-new-logo-is-used-everywhere-the-current-logo-image-is-referenced-header-footer-and-open-graph-metadata-image",
+      "title": "Replace the site’s current Meraki logo with the user-uploaded file `logo.png` and ensure the new logo is used everywhere the current logo image is referenced (header, footer, and Open Graph metadata image).",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Design and build a modern minimal marketing website for Meraki featuring Rishab Mehta, services (numerology, vaastu, aura scanning, Reiki), premium spiritual authority branding (deep purple + gold), and key sections expected for conversion and trust.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Create backend storage for contact/booking inquiries in the single Motoko actor, including timestamps and all submitted fields, and expose a query method for reading inquiries only to authenticated site owner(s) via Internet Identity.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Make key site details (contact email, phone number, address/links and other business info) easy to update without code changes—e.g., via a single configuration file or simple admin-editable content section.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add backend support for storing and retrieving editable “Site Settings” (at minimum: contactEmail, contactPhone; optionally: businessName, addressLine, and socialLinks) and restrict update access to authenticated admins via Internet Identity.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Implement any required Motoko state migration so existing deployed canisters upgrade cleanly after adding persisted Site Settings state.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Adjust the starting page hero text layout so “Rishab Mehta” appears on a single line directly below “Harmony” (with the line) on the landing/starting page.",
+      "reqIds": [],
+      "status": "in_progress"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Update header navigation link colors on the main page: set Services/About/How it Works/FAQ/Contact to white, and set the “Meraki” brand text in the header to gold.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Make header nav link colors responsive to scroll/background: render Services/About/How it Works/FAQ/Contact links white on the initial dark (deep purple) header, and switch those link colors to purple when scrolling down such that the header/site background becomes white (sticky header state).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Send Book Your Consultation form submissions as a well-organized email notification to meetrishabmehta@gmail.com when the user clicks Submit Enquiry.",
+      "reqIds": [],
+      "status": "blocked"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Remove the Twitter/X icon from the footer social links area.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Update site contact details everywhere (and via Site Settings where applicable): email meetrishabmehta@gmail.com and phone 9990093666.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Make the Phone field in the Book Your Consultation form required (compulsory) and enforce client-side validation.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Update footer social link redirects: Facebook -> https://www.facebook.com/rishab.mehtam6/ ; LinkedIn -> https://in.linkedin.com/in/meetrishabmehta ; Instagram -> https://www.instagram.com/rishabspirit?igsh=MWt0cjlkNmlweXBoeQ%3D%3D",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Replace the site’s current logo/brand mark with the user-provided logo asset and use it consistently where the logo appears (e.g., header and footer).",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Meraki.com",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

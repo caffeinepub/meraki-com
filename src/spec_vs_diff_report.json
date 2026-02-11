@@ -1,0 +1,32 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-11T03:42:06.653Z",
+  "summary": "REQ-23 (logo swap) does not appear to be implemented. The only modified files in the diff are metadata/summary files (frontend-file-summaries.txt and project_state.json), and there is no evidence that the logo asset, header/footer logo usage, or Open Graph image reference were updated.",
+  "missing_requirements": [
+    {
+      "id": "REQ-23",
+      "requirement": "Replace the site’s current Meraki logo with the user-uploaded file `logo.png` and ensure the new logo is used everywhere the current logo image is referenced (header, footer, and Open Graph metadata image).",
+      "reason": "The diff shows no change to the required static asset path, no edits to HeaderNav/Footer to use the new logo, and no confirmation that `frontend/index.html` OG image tag still points to `/assets/generated/meraki-logo.dim_1024x1024.png` while rendering the new logo. Only summary/state files were modified.",
+      "evidence": [
+        "frontend-file-summaries.txt",
+        "project_state.json"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Large-scale branding/marketing site redesign work (deep purple/gold branding, new fonts, Tailwind token updates, many landing page sections, admin pages, etc.).",
+      "reason": "These changes are described in the modified summary/state files but were not requested; the BuildRequest explicitly scoped the change to swapping the logo asset and references, and listed non-goals like changing brand colors/typography/layout/copy and adding new pages/admin functionality.",
+      "evidence": [
+        "frontend-file-summaries.txt",
+        "project_state.json"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "project_state.json"
+  ]
+}
