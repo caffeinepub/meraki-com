@@ -1,42 +1,56 @@
 {
   "kind": "build_request",
-  "title": "Replace site logo with user-provided logo asset",
-  "priority": "normal",
+  "title": "Generate a fresh project ZIP export download link",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-23",
-      "text": "Replace the site’s current Meraki logo with the user-uploaded file `logo.png` and ensure the new logo is used everywhere the current logo image is referenced (header, footer, and Open Graph metadata image).",
-      "target": "frontend",
+      "id": "REQ-31",
+      "text": "Generate a fresh ZIP archive export of the entire current project codebase (frontend, backend, static assets, and configuration files) and provide a new direct download link for that ZIP.",
+      "target": "unknown",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "use this logo"
+          "yes  generate a fresh download link for the ZIP now"
         ]
       },
       "acceptanceCriteria": [
-        "`frontend/public/assets/generated/meraki-logo.dim_1024x1024.png` is replaced/updated to match the uploaded `logo.png` (optimized as needed for web use).",
-        "The header logo in `frontend/src/features/landing/HeaderNav.tsx` visually shows the new logo.",
-        "The footer logo in `frontend/src/features/landing/Footer.tsx` visually shows the new logo.",
-        "The Open Graph image meta tag in `frontend/index.html` continues to point to `/assets/generated/meraki-logo.dim_1024x1024.png` and renders the new logo when the page is shared.",
-        "No backend changes are required for this update."
+        "A new ZIP export is generated from the current project state (not a previously cached artifact).",
+        "The ZIP includes frontend/, backend/, and the root config files specified by the export manifest.",
+        "A direct download URL for the new ZIP is produced and returned."
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "text": "Validate that the generated ZIP download link is reachable and returns a ZIP payload before returning it to the user, and if the primary download host/domain is unreachable provide at least one alternative delivery option for the same ZIP export along with clear English instructions for the fallback.",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "yes  generate a fresh download link for the ZIP now"
+        ]
+      },
+      "acceptanceCriteria": [
+        "An automated check confirms the primary download URL is reachable and returns a ZIP (correct content-type/extension or ZIP signature).",
+        "If the primary URL cannot be reached from the automated check, at least one alternative download option is provided for the same ZIP artifact.",
+        "User-facing fallback instructions are provided in English and explain exactly how to download via the alternative option."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/components/ui (read-only shadcn components).",
-    "Serve the logo as a static asset from the frontend (do not serve images from the backend)."
+    "Do not edit files in frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or any files under frontend/src/components/ui.",
+    "Keep all Motoko backend logic in the single actor in backend/main.mo; only add backend/migration.mo if a state upgrade is required."
   ],
   "nonGoals": [
-    "Changing brand colors, typography, layout, or copy beyond what is required to swap the logo asset.",
-    "Adding new pages or new admin functionality for uploading/changing logos."
+    "Do not add new product features or change the Meraki website UI/UX as part of this request.",
+    "Do not add any third-party hosting or external database integrations."
   ],
   "imageRequirements": {
     "required": [],
-    "edits": [
-      "Convert/optimize the uploaded logo (logo.png > meraki-logo.dim_1024x1024.png)"
-    ]
+    "edits": []
   },
   "userProfileUpdate": {
     "goalsToAdd": [],

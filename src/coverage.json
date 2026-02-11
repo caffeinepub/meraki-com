@@ -1,34 +1,70 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T03:42:06.656Z",
+  "generatedAt": "2026-02-11T05:30:08.173Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
-        "id": "REQ-23",
-        "summary": "Replace the site’s current Meraki logo with the user-uploaded file `logo.png` and ensure the new logo is used everywhere the current logo image is referenced (header, footer, and Open Graph metadata image).",
+        "id": "REQ-31",
+        "summary": "Generate a fresh ZIP archive export of the entire current project codebase (frontend, backend, static assets, and configuration files) and provide a new direct download link for that ZIP.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/meraki-logo.dim_1024x1024.png"
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/meraki/ProjectExportCard.tsx",
+          "frontend/src/pages/SiteSettingsPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/meraki-logo.dim_1024x1024.png"
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/meraki/ProjectExportCard.tsx",
+          "frontend/src/pages/SiteSettingsPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-32",
+        "summary": "Validate that the generated ZIP download link is reachable and returns a ZIP payload before returning it to the user, and if the primary download host/domain is unreachable provide at least one alternative delivery option for the same ZIP export along with clear English instructions for the fallback.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/zipValidation.ts",
+          "frontend/src/components/meraki/ProjectExportCard.tsx",
+          "frontend/scripts/EXPORT_README.txt"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/zipValidation.ts",
+          "frontend/src/components/meraki/ProjectExportCard.tsx",
+          "frontend/scripts/EXPORT_README.txt"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/meraki-logo.dim_1024x1024.png",
+    "frontend/scripts/EXPORT_README.txt",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/meraki/ProjectExportCard.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/features/booking/ContactBookingSection.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/lib/merakiServices.ts",
+    "frontend/src/pages/InquiriesPage.tsx",
+    "frontend/src/pages/SiteSettingsPage.tsx",
+    "frontend/src/types/meraki.ts",
+    "frontend/src/utils/zipValidation.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

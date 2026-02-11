@@ -1,4 +1,4 @@
-import { Service } from '../backend';
+import { Service } from '../types/meraki';
 
 export type MerakiServiceKey = 'numerology' | 'vaastu' | 'aura' | 'reiki';
 
@@ -64,31 +64,32 @@ export const MERAKI_SERVICES: Record<MerakiServiceKey, MerakiService> = {
     shortDescription: 'Experience deep relaxation and healing through the gentle flow of universal life force energy.',
     fullDescription: 'Reiki is a Japanese healing technique that channels universal life force energy to promote physical, emotional, and spiritual healing. Through gentle touch or distance healing, we help restore balance, reduce stress, and activate your body\'s natural healing abilities.',
     whatToExpect: [
-      'Deeply relaxing and rejuvenating healing session',
+      'Deeply relaxing healing session in person or remotely',
       'Release of physical tension and emotional blockages',
       'Enhanced sense of peace, clarity, and well-being',
-      'Support for physical healing and pain management',
-      'Guidance on self-healing practices and energy maintenance'
+      'Activation of your body\'s natural healing processes',
+      'Guidance on self-care practices to maintain balance'
     ],
     icon: '/assets/generated/icon-reiki.dim_256x256.png',
     backendValue: Service.consulting
   }
 };
 
-export function getServiceByKey(key: MerakiServiceKey): MerakiService {
+export function getAllServices(): MerakiService[] {
+  return Object.values(MERAKI_SERVICES);
+}
+
+export function getServiceByKey(key: MerakiServiceKey): MerakiService | undefined {
   return MERAKI_SERVICES[key];
 }
 
 export function getServiceKeyFromUrl(): MerakiServiceKey | null {
   const params = new URLSearchParams(window.location.search);
-  const service = params.get('service');
-  if (service && service in MERAKI_SERVICES) {
-    return service as MerakiServiceKey;
+  const serviceParam = params.get('service');
+  
+  if (serviceParam && serviceParam in MERAKI_SERVICES) {
+    return serviceParam as MerakiServiceKey;
   }
+  
   return null;
 }
-
-export function getAllServices(): MerakiService[] {
-  return Object.values(MERAKI_SERVICES);
-}
-

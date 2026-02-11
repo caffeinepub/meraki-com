@@ -1,32 +1,86 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T03:42:06.653Z",
-  "summary": "REQ-23 (logo swap) does not appear to be implemented. The only modified files in the diff are metadata/summary files (frontend-file-summaries.txt and project_state.json), and there is no evidence that the logo asset, header/footer logo usage, or Open Graph image reference were updated.",
+  "generatedAt": "2026-02-11T05:30:08.170Z",
+  "summary": "The diff adds a frontend “Project Export” card and a client-side ZIP URL validator, plus a backend stub `getProjectExportUrl()` that traps. It does not implement generating a fresh ZIP export or producing a working direct download link, so the core BuildRequest requirements are not met. Several unrelated features/pages/types/migration scaffolding were added or modified beyond the request.",
   "missing_requirements": [
     {
-      "id": "REQ-23",
-      "requirement": "Replace the site’s current Meraki logo with the user-uploaded file `logo.png` and ensure the new logo is used everywhere the current logo image is referenced (header, footer, and Open Graph metadata image).",
-      "reason": "The diff shows no change to the required static asset path, no edits to HeaderNav/Footer to use the new logo, and no confirmation that `frontend/index.html` OG image tag still points to `/assets/generated/meraki-logo.dim_1024x1024.png` while rendering the new logo. Only summary/state files were modified.",
+      "id": "REQ-31",
+      "requirement": "Generate a fresh ZIP archive export of the entire current project codebase (frontend, backend, static assets, and configuration files) and provide a new direct download link for that ZIP.",
+      "reason": "No implementation is shown that actually creates a ZIP from the current project state or returns a real download URL. The backend method intended to provide the URL unconditionally traps instead of generating/returning a link.",
       "evidence": [
-        "frontend-file-summaries.txt",
-        "project_state.json"
+        "backend/main.mo (getProjectExportUrl() traps with message about not available in source)"
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "requirement": "Validate that the generated ZIP download link is reachable and returns a ZIP payload before returning it to the user, and if the primary host/domain is unreachable provide at least one alternative delivery option with clear English fallback instructions.",
+      "reason": "While a client-side validator exists, there is no evidence of an automated pre-return validation of a real, generated primary URL (since no URL is produced). Also, the fallback references a Node script to generate ZIPs locally, but the diff does not show that script or any actual alternative delivery mechanism for the same generated artifact when the primary host is unreachable.",
+      "evidence": [
+        "frontend/src/utils/zipValidation.ts (client-side HEAD/Range validation only)",
+        "backend/main.mo (no URL to validate; traps)",
+        "frontend/scripts/EXPORT_README.txt (mentions `node frontend/scripts/export-codebase-zip.mjs`, but the script itself is not present in the diff summary)"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Large-scale branding/marketing site redesign work (deep purple/gold branding, new fonts, Tailwind token updates, many landing page sections, admin pages, etc.).",
-      "reason": "These changes are described in the modified summary/state files but were not requested; the BuildRequest explicitly scoped the change to swapping the logo asset and references, and listed non-goals like changing brand colors/typography/layout/copy and adding new pages/admin functionality.",
+      "description": "Added a new admin UI component/card for generating and downloading a project export, including validation states and fallback UI messaging.",
+      "reason": "The BuildRequest asks to generate a ZIP and provide a link; it does not request adding new UI/UX components/pages. This appears to be a product/UI addition beyond the request scope.",
       "evidence": [
-        "frontend-file-summaries.txt",
-        "project_state.json"
+        "frontend/src/components/meraki/ProjectExportCard.tsx",
+        "frontend/src/pages/SiteSettingsPage.tsx (imports/uses ProjectExportCard)"
+      ]
+    },
+    {
+      "description": "Introduced client-side ZIP URL validation utility using HEAD requests and ZIP signature checks.",
+      "reason": "REQ-32 requires automated validation, but does not specify adding a client-side utility module; implementing it this way is an unrequested design/feature addition (and does not satisfy the end-to-end requirement without a real generated URL).",
+      "evidence": [
+        "frontend/src/utils/zipValidation.ts"
+      ]
+    },
+    {
+      "description": "Added Motoko migration module scaffolding that discards legacy variables.",
+      "reason": "State migration was only allowed/needed if a state upgrade is required; the diff summary does not provide evidence that such a migration is necessary for the ZIP export task, making this appear extraneous.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo (adds `(with migration = Migration.run)`)"
+      ]
+    },
+    {
+      "description": "Added/modified inquiry, site settings, admin dashboard, and service-mapping related code and types.",
+      "reason": "These changes are unrelated to generating a ZIP export download link and thus constitute additional product work outside the BuildRequest’s scope/non-goals.",
+      "evidence": [
+        "frontend/src/types/meraki.ts",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/features/booking/ContactBookingSection.tsx",
+        "frontend/src/pages/InquiriesPage.tsx",
+        "frontend/src/lib/merakiServices.ts",
+        "frontend-file-summaries.txt (describes multiple feature/UI changes)"
+      ]
+    },
+    {
+      "description": "Added an export README describing a dual-zip export process and local Node script fallback.",
+      "reason": "The BuildRequest did not ask to add documentation or a local-script-based export workflow; moreover, the referenced script is not evidenced in the diff summary.",
+      "evidence": [
+        "frontend/scripts/EXPORT_README.txt"
       ]
     }
   ],
   "confidence": 0.74,
   "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
+    "frontend/scripts/EXPORT_README.txt",
+    "frontend/src/components/meraki/ProjectExportCard.tsx",
+    "frontend/src/features/booking/ContactBookingSection.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/lib/merakiServices.ts",
+    "frontend/src/pages/InquiriesPage.tsx",
+    "frontend/src/pages/SiteSettingsPage.tsx",
+    "frontend/src/types/meraki.ts",
+    "frontend/src/utils/zipValidation.ts",
     "project_state.json"
   ]
 }

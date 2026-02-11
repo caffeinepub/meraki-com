@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import LoginButton from '../components/meraki/LoginButton';
 import ProfileSetupDialog from '../components/meraki/ProfileSetupDialog';
+import ProjectExportCard from '../components/meraki/ProjectExportCard';
 import { ArrowLeft, Save, Settings } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
 import { toast } from 'sonner';
@@ -156,107 +157,111 @@ export default function SiteSettingsPage() {
             </div>
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
-              <CardDescription>
-                Update the contact details displayed on your website. These changes will be reflected immediately on the landing page.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {settingsLoading || adminLoading ? (
-                <div className="py-8 text-center text-muted-foreground">
-                  Loading settings...
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="contactEmail">
-                        Contact Email <span className="text-destructive">*</span>
-                      </Label>
-                      <Input
-                        id="contactEmail"
-                        type="email"
-                        value={formData.contactEmail}
-                        onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
-                        placeholder="contact@example.com"
-                        required
-                      />
-                      <p className="text-sm text-muted-foreground">
-                        This email will be displayed in the contact section
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="contactPhone">
-                        Contact Phone <span className="text-destructive">*</span>
-                      </Label>
-                      <Input
-                        id="contactPhone"
-                        type="tel"
-                        value={formData.contactPhone}
-                        onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
-                        placeholder="+1 (555) 123-4567"
-                        required
-                      />
-                      <p className="text-sm text-muted-foreground">
-                        This phone number will be displayed in the contact section
-                      </p>
-                    </div>
-
-                    <Separator />
-
-                    <div className="space-y-2">
-                      <Label htmlFor="businessName">Business Name (Optional)</Label>
-                      <Input
-                        id="businessName"
-                        type="text"
-                        value={formData.businessName}
-                        onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                        placeholder="Meraki Spiritual Services"
-                      />
-                      <p className="text-sm text-muted-foreground">
-                        Your business or organization name
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="addressLine">Address (Optional)</Label>
-                      <Input
-                        id="addressLine"
-                        type="text"
-                        value={formData.addressLine}
-                        onChange={(e) => setFormData({ ...formData, addressLine: e.target.value })}
-                        placeholder="123 Main St, City, State 12345"
-                      />
-                      <p className="text-sm text-muted-foreground">
-                        Your business address or location
-                      </p>
-                    </div>
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Contact Information</CardTitle>
+                <CardDescription>
+                  Update the contact details displayed on your website. These changes will be reflected immediately on the landing page.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {settingsLoading || adminLoading ? (
+                  <div className="py-8 text-center text-muted-foreground">
+                    Loading settings...
                   </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="contactEmail">
+                          Contact Email <span className="text-destructive">*</span>
+                        </Label>
+                        <Input
+                          id="contactEmail"
+                          type="email"
+                          value={formData.contactEmail}
+                          onChange={(e) => setFormData({ ...formData, contactEmail: e.target.value })}
+                          placeholder="contact@example.com"
+                          required
+                        />
+                        <p className="text-sm text-muted-foreground">
+                          This email will be displayed in the contact section
+                        </p>
+                      </div>
 
-                  <div className="flex justify-end gap-2 pt-4">
-                    <Link to="/inquiries">
-                      <Button type="button" variant="outline">
-                        Cancel
+                      <div className="space-y-2">
+                        <Label htmlFor="contactPhone">
+                          Contact Phone <span className="text-destructive">*</span>
+                        </Label>
+                        <Input
+                          id="contactPhone"
+                          type="tel"
+                          value={formData.contactPhone}
+                          onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
+                          placeholder="+1 (555) 123-4567"
+                          required
+                        />
+                        <p className="text-sm text-muted-foreground">
+                          This phone number will be displayed in the contact section
+                        </p>
+                      </div>
+
+                      <Separator />
+
+                      <div className="space-y-2">
+                        <Label htmlFor="businessName">Business Name (Optional)</Label>
+                        <Input
+                          id="businessName"
+                          type="text"
+                          value={formData.businessName}
+                          onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                          placeholder="Meraki Spiritual Services"
+                        />
+                        <p className="text-sm text-muted-foreground">
+                          Your business or organization name
+                        </p>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="addressLine">Address (Optional)</Label>
+                        <Input
+                          id="addressLine"
+                          type="text"
+                          value={formData.addressLine}
+                          onChange={(e) => setFormData({ ...formData, addressLine: e.target.value })}
+                          placeholder="123 Main St, City, State 12345"
+                        />
+                        <p className="text-sm text-muted-foreground">
+                          Your business address or location
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-end gap-2 pt-4">
+                      <Link to="/inquiries">
+                        <Button type="button" variant="outline">
+                          Cancel
+                        </Button>
+                      </Link>
+                      <Button type="submit" disabled={updateSettings.isPending} className="gap-2">
+                        {updateSettings.isPending ? (
+                          'Saving...'
+                        ) : (
+                          <>
+                            <Save className="h-4 w-4" />
+                            Save Changes
+                          </>
+                        )}
                       </Button>
-                    </Link>
-                    <Button type="submit" disabled={updateSettings.isPending} className="gap-2">
-                      {updateSettings.isPending ? (
-                        'Saving...'
-                      ) : (
-                        <>
-                          <Save className="h-4 w-4" />
-                          Save Changes
-                        </>
-                      )}
-                    </Button>
-                  </div>
-                </form>
-              )}
-            </CardContent>
-          </Card>
+                    </div>
+                  </form>
+                )}
+              </CardContent>
+            </Card>
+
+            <ProjectExportCard />
+          </div>
         </div>
       </div>
     </>

@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { useSubmitInquiry, useGetSiteSettings } from '../../hooks/useQueries';
 import { getAllServices, getServiceKeyFromUrl, type MerakiServiceKey } from '../../lib/merakiServices';
-import { ContactMethod } from '../../backend';
+import { ContactMethod } from '../../types/meraki';
 import { toast } from 'sonner';
 import { CheckCircle2, Mail, Phone, MessageSquare } from 'lucide-react';
 

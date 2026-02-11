@@ -2,19 +2,46 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-the-site-s-current-meraki-logo-with-the-user-uploaded-file-logo-png-and-ensure-the-new-logo-is-used-everywhere-the-current-logo-image-is-referenced-header-footer-and-open-graph-metadata-image",
-      "featureTitle": "Replace the site’s current Meraki logo with the user-uploaded file `logo.png` and ensure the new logo is used everywhere the current logo image is referenced (header, footer, and Open Graph metadata image).",
-      "files": [],
+      "featureId": "feature-generate-a-fresh-zip-archive-export-of-the-entire-current-project-codebase-frontend-backend-static-assets-and-configuration-files-and-provide-a-new-direct-download-link-for-that-zip",
+      "featureTitle": "Generate a fresh ZIP archive export of the entire current project codebase (frontend, backend, static assets, and configuration files) and provide a new direct download link for that ZIP.",
+      "files": [
+        "frontend/src/components/meraki/ProjectExportCard.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/SiteSettingsPage.tsx"
+      ],
       "components": [
         "authorization@4.0.0",
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
       ],
       "testIds": [
-        "REQ-23"
+        "REQ-31"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-validate-that-the-generated-zip-download-link-is-reachable-and-returns-a-zip-payload-before-returning-it-to-the-user-and-if-the-primary-download-host-domain-is-unreachable-provide-at-least-one-alternative-delivery-option-for-the-same-zip-export-along-with-clear-english-instructions-for-the-fallback",
+      "featureTitle": "Validate that the generated ZIP download link is reachable and returns a ZIP payload before returning it to the user, and if the primary download host/domain is unreachable provide at least one alternative delivery option for the same ZIP export along with clear English instructions for the fallback.",
+      "files": [
+        "frontend/scripts/EXPORT_README.txt",
+        "frontend/src/components/meraki/ProjectExportCard.tsx",
+        "frontend/src/utils/zipValidation.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-32"
       ],
       "confidence": "high"
     }

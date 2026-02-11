@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 15,
+  "projectStateVersion": 23,
   "summary": "Build a stunning, minimal, modern website for Meraki.com showcasing Rishab Mehta’s premium spiritual services (numerology, vaastu, aura scanning, Reiki) with deep purple and gold branding and emphasis on 20+ years of experience.",
   "architectural_notes": [
     "Brand styling: Deep Purple + Gold to convey premium spiritual authority.",
@@ -8,10 +8,11 @@
     "Centralize editable business/contact details (email/phone/etc.) in one place (e.g., config/constants or CMS-like content model) to allow easy updates."
   ],
   "known_issues": [
-    "Form submissions are not emailed; inquiry details are stored in backend/admin (owner-only) and require logging into the Inquiries page to view."
+    "Form submissions are not emailed; inquiry details are stored in backend/admin (owner-only) and require logging into the Inquiries page to view.",
+    "Some users cannot access the generated project ZIP export link because their network/ISP blocks the draft.caffeine.ai download domain, resulting in 'site can’t be reached' even across multiple browsers.",
+    "Project export/build/deployment is failing with a 'deployment error', preventing generation of the ZIP and any downloadable image links."
   ],
-  "isFixRequest": false,
-  "imageRequirements": "## Edit Images\n- Convert/optimize the uploaded logo (logo.png > meraki-logo.dim_1024x1024.png)",
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-modern-minimal-premium-looking-single-page-marketing-website-for-meraki-featuring-rishab-mehta-using-the-brand-colors-deep-purple-gold-consistently-across-the-ui-backgrounds-accents-buttons-headings-and-ensuring-the-overall-look-conveys-premium-spiritual-authority",
@@ -172,6 +173,78 @@
         "REQ-23"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-generate-a-new-zip-archive-export-of-the-entire-current-project-codebase-frontend-backend-static-assets-and-configuration-files-so-the-user-can-download-it-for-self-hosting",
+      "title": "Generate a new ZIP archive export of the entire current project codebase (frontend, backend, static assets, and configuration files) so the user can download it for self-hosting.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-include-a-short-plain-text-file-inside-the-zip-e-g-export-readme-txt-that-explains-what-the-zip-contains-and-where-the-frontend-and-backend-code-live-within-the-archive",
+      "title": "Include a short plain-text file inside the ZIP (e.g., EXPORT_README.txt) that explains what the ZIP contains and where the frontend and backend code live within the archive.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-regenerate-a-fresh-zip-export-of-the-entire-current-project-codebase-frontend-backend-static-assets-and-configuration-files-and-produce-a-new-direct-download-link-for-that-zip",
+      "title": "Regenerate a fresh ZIP export of the entire current project codebase (frontend, backend, static assets, and configuration files) and produce a new direct download link for that ZIP.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-provided-zip-download-link-is-validated-as-working-before-it-is-returned-to-the-user-by-performing-an-automated-check-that-the-url-is-reachable-and-returns-a-zip-payload",
+      "title": "Ensure the provided ZIP download link is validated as working before it is returned to the user by performing an automated check that the URL is reachable and returns a ZIP payload.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-if-the-primary-zip-download-host-domain-is-unreachable-provide-at-least-one-alternative-non-blocked-delivery-option-for-the-same-zip-export-e-g-mirrored-host-domain-or-an-in-app-download-that-does-not-rely-on-the-blocked-domain-and-present-clear-english-user-facing-instructions-for-the-fallback",
+      "title": "If the primary ZIP download host/domain is unreachable, provide at least one alternative, non-blocked delivery option for the same ZIP export (e.g., mirrored host/domain or an in-app download that does not rely on the blocked domain), and present clear English user-facing instructions for the fallback.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-identify-and-fix-the-cause-of-the-current-deployment-export-failure-so-that-a-full-build-and-project-zip-export-can-complete-successfully-the-user-is-requesting-a-retry-but-the-previous-attempt-failed-with-a-deployment-error",
+      "title": "Identify and fix the cause of the current deployment/export failure so that a full build and project ZIP export can complete successfully (the user is requesting a retry, but the previous attempt failed with a deployment error).",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-the-deployment-export-succeeds-generate-a-fresh-zip-archive-export-of-the-entire-current-project-codebase-frontend-backend-static-assets-and-configuration-files-validate-that-the-provided-download-url-is-reachable-and-returns-a-zip-payload-and-provide-at-least-one-alternative-delivery-option-if-the-primary-zip-host-domain-is-unreachable-for-the-user",
+      "title": "After the deployment/export succeeds, generate a fresh ZIP archive export of the entire current project codebase (frontend, backend, static assets, and configuration files), validate that the provided download URL is reachable and returns a ZIP payload, and provide at least one alternative delivery option if the primary ZIP host/domain is unreachable for the user.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-fresh-zip-archive-export-of-the-entire-current-project-codebase-frontend-backend-static-assets-and-configuration-files-and-provide-a-new-direct-download-link-for-that-zip",
+      "title": "Generate a fresh ZIP archive export of the entire current project codebase (frontend, backend, static assets, and configuration files) and provide a new direct download link for that ZIP.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-validate-that-the-generated-zip-download-link-is-reachable-and-returns-a-zip-payload-before-returning-it-to-the-user-and-if-the-primary-download-host-domain-is-unreachable-provide-at-least-one-alternative-delivery-option-for-the-same-zip-export-along-with-clear-english-instructions-for-the-fallback",
+      "title": "Validate that the generated ZIP download link is reachable and returns a ZIP payload before returning it to the user, and if the primary download host/domain is unreachable provide at least one alternative delivery option for the same ZIP export along with clear English instructions for the fallback.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -262,6 +335,18 @@
     {
       "id": "AR-21",
       "summary": "Replace the site’s current logo/brand mark with the user-provided logo asset and use it consistently where the logo appears (e.g., header and footer).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Provide a downloadable ZIP export of the entire project codebase (frontend, backend, assets, config) so the user can self-host the website elsewhere.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Provide an alternate ZIP delivery method/link (non-draft.caffeine.ai domain or mirrored hosting) so users on networks/ISPs blocking draft.caffeine.ai can still download the project export reliably.",
       "reqIds": [],
       "status": "pending"
     }

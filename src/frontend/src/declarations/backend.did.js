@@ -8,134 +8,109 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const _CaffeineStorageCreateCertificateResult = IDL.Record({
+  'method' : IDL.Text,
+  'blob_hash' : IDL.Text,
+});
+export const _CaffeineStorageRefillInformation = IDL.Record({
+  'proposed_top_up_amount' : IDL.Opt(IDL.Nat),
+});
+export const _CaffeineStorageRefillResult = IDL.Record({
+  'success' : IDL.Opt(IDL.Bool),
+  'topped_up_amount' : IDL.Opt(IDL.Nat),
+});
 export const UserRole = IDL.Variant({
   'admin' : IDL.Null,
   'user' : IDL.Null,
   'guest' : IDL.Null,
 });
-export const Service = IDL.Variant({
-  'coaching' : IDL.Null,
-  'consulting' : IDL.Null,
-  'workshops' : IDL.Null,
-});
-export const Time = IDL.Int;
-export const ContactMethod = IDL.Variant({
-  'email' : IDL.Null,
-  'phone' : IDL.Null,
-});
-export const Inquiry = IDL.Record({
-  'id' : IDL.Nat,
-  'service' : Service,
-  'consent' : IDL.Bool,
-  'fullName' : IDL.Text,
-  'email' : IDL.Text,
-  'message' : IDL.Text,
-  'timestamp' : Time,
-  'phone' : IDL.Opt(IDL.Text),
-  'preferredContactMethod' : ContactMethod,
-});
-export const UserProfile = IDL.Record({ 'name' : IDL.Text });
-export const SiteSettings = IDL.Record({
-  'socialLinks' : IDL.Opt(IDL.Vec(IDL.Text)),
-  'businessName' : IDL.Opt(IDL.Text),
-  'addressLine' : IDL.Opt(IDL.Text),
-  'contactEmail' : IDL.Text,
-  'contactPhone' : IDL.Text,
-});
 
 export const idlService = IDL.Service({
-  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
-  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
-  'getAllInquiries' : IDL.Func([], [IDL.Vec(Inquiry)], ['query']),
-  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
-  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
-  'getSiteSettings' : IDL.Func([], [IDL.Opt(SiteSettings)], ['query']),
-  'getUserProfile' : IDL.Func(
-      [IDL.Principal],
-      [IDL.Opt(UserProfile)],
+  '_caffeineStorageBlobIsLive' : IDL.Func(
+      [IDL.Vec(IDL.Nat8)],
+      [IDL.Bool],
       ['query'],
     ),
-  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
-  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
-  'submitInquiry' : IDL.Func(
-      [
-        IDL.Text,
-        IDL.Text,
-        IDL.Opt(IDL.Text),
-        Service,
-        ContactMethod,
-        IDL.Text,
-        IDL.Bool,
-      ],
-      [IDL.Record({ 'id' : IDL.Nat, 'timestamp' : Time })],
+  '_caffeineStorageBlobsToDelete' : IDL.Func(
+      [],
+      [IDL.Vec(IDL.Vec(IDL.Nat8))],
+      ['query'],
+    ),
+  '_caffeineStorageConfirmBlobDeletion' : IDL.Func(
+      [IDL.Vec(IDL.Vec(IDL.Nat8))],
+      [],
       [],
     ),
-  'updateSiteSettings' : IDL.Func([SiteSettings], [], []),
+  '_caffeineStorageCreateCertificate' : IDL.Func(
+      [IDL.Text],
+      [_CaffeineStorageCreateCertificateResult],
+      [],
+    ),
+  '_caffeineStorageRefillCashier' : IDL.Func(
+      [IDL.Opt(_CaffeineStorageRefillInformation)],
+      [_CaffeineStorageRefillResult],
+      [],
+    ),
+  '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getProjectExportUrl' : IDL.Func([], [IDL.Text], []),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const _CaffeineStorageCreateCertificateResult = IDL.Record({
+    'method' : IDL.Text,
+    'blob_hash' : IDL.Text,
+  });
+  const _CaffeineStorageRefillInformation = IDL.Record({
+    'proposed_top_up_amount' : IDL.Opt(IDL.Nat),
+  });
+  const _CaffeineStorageRefillResult = IDL.Record({
+    'success' : IDL.Opt(IDL.Bool),
+    'topped_up_amount' : IDL.Opt(IDL.Nat),
+  });
   const UserRole = IDL.Variant({
     'admin' : IDL.Null,
     'user' : IDL.Null,
     'guest' : IDL.Null,
   });
-  const Service = IDL.Variant({
-    'coaching' : IDL.Null,
-    'consulting' : IDL.Null,
-    'workshops' : IDL.Null,
-  });
-  const Time = IDL.Int;
-  const ContactMethod = IDL.Variant({ 'email' : IDL.Null, 'phone' : IDL.Null });
-  const Inquiry = IDL.Record({
-    'id' : IDL.Nat,
-    'service' : Service,
-    'consent' : IDL.Bool,
-    'fullName' : IDL.Text,
-    'email' : IDL.Text,
-    'message' : IDL.Text,
-    'timestamp' : Time,
-    'phone' : IDL.Opt(IDL.Text),
-    'preferredContactMethod' : ContactMethod,
-  });
-  const UserProfile = IDL.Record({ 'name' : IDL.Text });
-  const SiteSettings = IDL.Record({
-    'socialLinks' : IDL.Opt(IDL.Vec(IDL.Text)),
-    'businessName' : IDL.Opt(IDL.Text),
-    'addressLine' : IDL.Opt(IDL.Text),
-    'contactEmail' : IDL.Text,
-    'contactPhone' : IDL.Text,
-  });
   
   return IDL.Service({
-    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
-    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
-    'getAllInquiries' : IDL.Func([], [IDL.Vec(Inquiry)], ['query']),
-    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
-    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
-    'getSiteSettings' : IDL.Func([], [IDL.Opt(SiteSettings)], ['query']),
-    'getUserProfile' : IDL.Func(
-        [IDL.Principal],
-        [IDL.Opt(UserProfile)],
+    '_caffeineStorageBlobIsLive' : IDL.Func(
+        [IDL.Vec(IDL.Nat8)],
+        [IDL.Bool],
         ['query'],
       ),
-    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
-    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
-    'submitInquiry' : IDL.Func(
-        [
-          IDL.Text,
-          IDL.Text,
-          IDL.Opt(IDL.Text),
-          Service,
-          ContactMethod,
-          IDL.Text,
-          IDL.Bool,
-        ],
-        [IDL.Record({ 'id' : IDL.Nat, 'timestamp' : Time })],
+    '_caffeineStorageBlobsToDelete' : IDL.Func(
+        [],
+        [IDL.Vec(IDL.Vec(IDL.Nat8))],
+        ['query'],
+      ),
+    '_caffeineStorageConfirmBlobDeletion' : IDL.Func(
+        [IDL.Vec(IDL.Vec(IDL.Nat8))],
+        [],
         [],
       ),
-    'updateSiteSettings' : IDL.Func([SiteSettings], [], []),
+    '_caffeineStorageCreateCertificate' : IDL.Func(
+        [IDL.Text],
+        [_CaffeineStorageCreateCertificateResult],
+        [],
+      ),
+    '_caffeineStorageRefillCashier' : IDL.Func(
+        [IDL.Opt(_CaffeineStorageRefillInformation)],
+        [_CaffeineStorageRefillResult],
+        [],
+      ),
+    '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getProjectExportUrl' : IDL.Func([], [IDL.Text], []),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   });
 };
 

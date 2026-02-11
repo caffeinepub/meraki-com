@@ -1,23 +1,57 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace Meraki logo asset across site surfaces",
+  "title": "Fresh project ZIP export link generation and validation (frontend)",
   "requirements": [
     {
-      "id": "REQ-23",
-      "summary": "Swap the existing Meraki logo with the provided logo.png while keeping all existing references (header, footer, and Open Graph image) pointing to the generated static asset path.",
+      "id": "REQ-31",
+      "summary": "Add an admin-only control to request a fresh project ZIP export URL from the backend and present it as a direct download link.",
       "acceptanceCriteria": [
-        "`frontend/public/assets/generated/meraki-logo.dim_1024x1024.png` is replaced/updated to match the uploaded `logo.png` (optimized as needed for web use).",
-        "The header logo in `frontend/src/features/landing/HeaderNav.tsx` visually shows the new logo.",
-        "The footer logo in `frontend/src/features/landing/Footer.tsx` visually shows the new logo.",
-        "The Open Graph image meta tag in `frontend/index.html` continues to point to `/assets/generated/meraki-logo.dim_1024x1024.png` and renders the new logo when the page is shared.",
-        "No backend changes are required for this update."
+        "A new ZIP export is generated from the current project state (not a previously cached artifact).",
+        "The ZIP includes frontend/, backend/, and the root config files specified by the export manifest.",
+        "A direct download URL for the new ZIP is produced and returned."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/meraki-logo.dim_1024x1024.png",
+          "path": "frontend/src/hooks/useQueries.ts",
           "operation": "modify",
-          "description": "Replace the existing generated logo file with an optimized PNG derived from the uploaded `logo.png`, preserving the exact filename `meraki-logo.dim_1024x1024.png` so all existing references in the header (`frontend/src/features/landing/HeaderNav.tsx`), footer (`frontend/src/features/landing/Footer.tsx`), and Open Graph metadata (`frontend/index.html`) continue to work without code changes."
+          "description": "Add a React Query hook (e.g., useGetProjectExportUrl) that calls the existing backend actor capability getProjectExportUrl() and supports on-demand refetching for generating a fresh URL."
+        },
+        {
+          "path": "frontend/src/components/meraki/ProjectExportCard.tsx",
+          "operation": "create",
+          "description": "Create an admin-only UI card that lets the admin generate a fresh export URL (triggering the useGetProjectExportUrl refetch), then displays the returned direct download link along with basic status messaging. Ensure it is used by a page so it is not orphaned."
+        },
+        {
+          "path": "frontend/src/pages/SiteSettingsPage.tsx",
+          "operation": "modify",
+          "description": "Wire the new ProjectExportCard into the existing admin-only Site Settings page (no new routes). Keep it behind the existing isAdmin checks so only authorized admins can generate/view the export URL."
+        }
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "summary": "Before displaying/returning the project ZIP download link, automatically verify it is reachable and points to a ZIP; if verification fails, provide a clear fallback option and instructions.",
+      "acceptanceCriteria": [
+        "An automated check confirms the primary download URL is reachable and returns a ZIP (correct content-type/extension or ZIP signature).",
+        "If the primary URL cannot be reached from the automated check, at least one alternative download option is provided for the same ZIP artifact.",
+        "User-facing fallback instructions are provided in English and explain exactly how to download via the alternative option."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/zipValidation.ts",
+          "operation": "create",
+          "description": "Implement a small utility that validates a URL is reachable and likely a ZIP by fetching it (preferably with a byte-range request) and checking for a ZIP signature (PK header) and/or content-type/filename heuristics."
+        },
+        {
+          "path": "frontend/src/components/meraki/ProjectExportCard.tsx",
+          "operation": "modify",
+          "description": "Enhance the export UI to run the automated reachability/ZIP validation immediately after receiving the URL; only show a 'ready to download' link when validation passes. If validation fails, present at least one fallback delivery option: instruct the user (in English) to run frontend/scripts/export-codebase-zip.mjs locally and use the resulting meraki-codebase-export.zip (or the timestamped backup) from the project root."
+        },
+        {
+          "path": "frontend/scripts/EXPORT_README.txt",
+          "operation": "modify",
+          "description": "Add a short, explicit section describing the fallback download option (running frontend/scripts/export-codebase-zip.mjs and locating the generated ZIP artifacts) so the UI can reference the same instructions consistently."
         }
       ]
     }
